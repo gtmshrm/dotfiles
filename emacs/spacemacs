@@ -360,6 +360,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; '("Orestotlra" "Anwellyin" "GWILIESEN" "Howdeshell" "Otsuka" "MALIK" "xXgulbragurXx13" "Clytaemnus"
      ;; "Glass" "GEIRSKLA" "AlsTEinnhr" "Lenunnono011" "MaRzLa" "Bohnert"))
   )
+
+  ;; Setting Font type according to OS
+  (cond
+   ((spacemacs/system-is-mac)
+    (setq-default dotspacemacs-default-font '("Source Code Pro"
+                                              :size 13
+                                              :weight normal
+                                              :width normal
+                                              :powerline-scale 1.1)))
+   ((spacemacs/system-is-linux)
+    (setq-default dotspacemacs-default-font '("Monospace"
+                                              :size 13
+                                              :weight normal
+                                              :width normal
+                                              :powerline-scale 1.1))))
   )
 
 (defun dotspacemacs/user-config ()
@@ -375,19 +390,6 @@ you should place your code here."
    evil-escape-key-sequence "kj"
    evil-escape-key-sequence "jk")
 
-   (cond
-   ((spacemacs/system-is-mac)
-    (setq-default dotspacemacs-default-font '("Source Code Pro"
-                                             :size 13
-                                             :weight normal
-                                             :width normal
-                                             :powerline-scale 1.1)))
-   ((spacemacs/system-is-linux)
-    (setq-default dotspacemacs-default-font '("Source Code Pro"
-                                              :size 13
-                                              :weight normal
-                                              :width normal
-                                              :powerline-scale 1.1))))
   )
 
 
