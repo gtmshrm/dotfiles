@@ -1,1 +1,2 @@
+#!/bin/bash
 cp ~/.spacemacs ~/dotfiles/emacs/spacemacs
