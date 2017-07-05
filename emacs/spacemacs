@@ -41,6 +41,7 @@ values."
                       :disable-for org erg)
      emacs-lisp
      ;;git
+     ;;github
      helm
      ;;markdown
      org
@@ -56,12 +57,7 @@ values."
      themes-megapack
      ;;version-control
      ;;yaml
-
-     ;; Non-contrib layers
-     encoding
-     evil-little-word
-     no-dots
-     operators)
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -316,6 +312,61 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq-default
+
+   ;; Evil
+   evil-shift-round nil
+
+   ;; Whitespace mode (activate using SPC-t-w to check for tabs)
+   whitespace-style '(face tabs tab-mark newline-mark)
+   whitespace-display-mappings
+   '((newline-mark 10 [172 10])
+     (tab-mark 9 [9655 9]))
+
+   ;; Magit
+   ;; magit-popup-show-common-commands nil
+   ;; magit-gh-pulls-pull-detail-limit 200
+   ;; magit-bury-buffer-function 'magit-mode-quit-window
+
+   ;; Flycheck
+   flycheck-check-syntax-automatically '(save mode-enabled)
+
+   ;; Avy
+   ;; avy-all-windows 'all-frames
+
+   ;; Matlab
+   ;; matlab-auto-fill nil
+   ;; matlab-fill-code nil
+   ;; matlab-functions-have-end t
+   ;; matlab-indent-function-body t
+
+   ;; LaTeX
+   ;; font-latex-fontify-script nil
+   ;; TeX-newline-function 'reindent-then-newline-and-indent
+
+   ;; Shell
+   shell-default-term-shell "/bin/zsh"
+
+   ;; Web
+   ;; web-mode-markup-indent-offset 2
+   ;; web-mode-css-indent-offset 2
+   ;; web-mode-code-indent-offset 4
+
+   ;; Rust
+   ;; rust-indent-method-chain t
+
+   ;; Elfeed
+   ;; elfeed-feeds
+   ;; '("https://www.reddit.com/r/emacs/.rss"
+     ;; "http://xkcd.com/rss.xml")
+
+   ;; IRC (*** Check ending brackets while uncommenting)
+   ;; erc-server-list
+   ;; `(("efonn.no" :port 1025 :nick "TheBB" :password ,(format "TheBB/freenode:%s" bb/znc-pwd)))
+   ;; erc-ignore-list
+   ;; '("Orestotlra" "Anwellyin" "GWILIESEN" "Howdeshell" "Otsuka" "MALIK" "xXgulbragurXx13" "Clytaemnus"
+     ;; "Glass" "GEIRSKLA" "AlsTEinnhr" "Lenunnono011" "MaRzLa" "Bohnert"))
+  )
   )
 
 (defun dotspacemacs/user-config ()
@@ -325,6 +376,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Settings
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
