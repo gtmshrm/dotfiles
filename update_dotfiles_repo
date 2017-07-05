@@ -1,1 +1,1 @@
-cp .spacemacs dotfiles/emacs/spacemacs
+cp ~/.spacemacs ~/dotfiles/emacs/spacemacs
