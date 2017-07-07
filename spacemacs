@@ -39,11 +39,12 @@ values."
      (auto-completion :variables
                       auto-completion-tab-key-behavior 'cycle
                       :disable-for org erg)
+     (c-c++ :variables c-c++-enable-clang-support t)
      emacs-lisp
      git
      github
      helm
-     ;;markdown
+     markdown
      org
      python
      ranger
@@ -66,8 +67,8 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
-   '(helm-flycheck
-     evil-unimpaired)
+   '(evil-surround
+     helm-flycheck)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -413,6 +414,23 @@ you should place your code here."
     :defer t
     :init
     (spacemacs/set-leader-keys "ee" 'helm-flycheck))
+  
+  (use-package helm-flycheck
+    :defer t
+    :init
+    ;; use non-spaced pairs when surrounding with an opening brace
+    (evil-add-to-alist
+     'evil-surround-pairs-alist
+     ?\( '("(" . ")")
+     ?\[ '("[" . "]")
+     ?\{ '("{" . "}")
+     ?\) '("( " . " )")
+     ?\] '("[ " . " ]")
+     ?\} '("{ " . " }"))
+    :config
+    (add-hook 'c++-mode-hook (lambda ()
+                               (push '(?< . ("< " . " >")) evil-surround-pairs-alist)))
+    (global-evil-surround-mode 1))
 )
 
 
