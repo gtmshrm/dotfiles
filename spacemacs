@@ -37,6 +37,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-tab-key-behavior 'cycle
                       :disable-for org erg)
      (c-c++ :variables c-c++-enable-clang-support t)
