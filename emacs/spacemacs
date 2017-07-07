@@ -57,6 +57,7 @@ values."
      (syntax-checking :variables syntax-checking-enable-by-default nil)
      themes-megapack
      ;;version-control
+     (wakatime :variables wakatime-api-key  "9aa153da-a249-4768-89a1-385de5787abf")
      ;;yaml
      )
 
@@ -139,7 +140,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(sanityinc-tomorrow-blue
+   dotspacemacs-themes '(flatland
+                         sanityinc-tomorrow-blue
                          sanityinc-tomorrow-day)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -367,17 +369,27 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Setting Font type according to OS
   (cond
    ((spacemacs/system-is-mac)
-    (setq-default dotspacemacs-default-font '("Source Code Pro"
+    (setq-default
+     dotspacemacs-default-font '("Source Code Pro"
                                               :size 13
                                               :weight normal
                                               :width normal
-                                              :powerline-scale 1.1)))
+                                              :powerline-scale 1.1)
+     wakatime-python-bin "/Users/gautamsharma/anaconda/bin/python"
+     wakatime-cli-path "/Users/gautamsharma/anaconda/bin/wakatime"
+     )
+   )
    ((spacemacs/system-is-linux)
     (setq-default dotspacemacs-default-font '("Monospace"
                                               :size 13
                                               :weight normal
                                               :width normal
-                                              :powerline-scale 1.1))))
+                                              :powerline-scale 1.1)
+    wakatime-python-bin "/Users/gtmshrm/anaconda/bin/python"
+    wakatime-cli-path "/Users/gtmshrm/anaconda/bin/wakatime"
+    )
+   )
+  )
 
   ;; Make linums relative by default
   (global-linum-mode nil)
