@@ -387,8 +387,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                   :weight normal
                                   :width normal
                                   :powerline-scale 1.1)
-    wakatime-python-bin "/Users/gtmshrm/miniconda3/bin/python"
-    wakatime-cli-path "/Users/gtmshrm/miniconda3/bin/wakatime"
+    wakatime-python-bin "/home/gtmshrm/miniconda3/bin/python"
+    wakatime-cli-path "/home/gtmshrm/miniconda3/bin/wakatime"
     )
    )
   )
