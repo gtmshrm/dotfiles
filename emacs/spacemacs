@@ -371,20 +371,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ((spacemacs/system-is-mac)
     (setq-default
      dotspacemacs-default-font '("Source Code Pro"
-                                              :size 13
-                                              :weight normal
-                                              :width normal
-                                              :powerline-scale 1.1)
+                                  :size 13
+                                  :weight normal
+                                  :width normal
+                                  :powerline-scale 1.1)
      wakatime-python-bin "/Users/gautamsharma/anaconda/bin/python"
      wakatime-cli-path "/Users/gautamsharma/anaconda/bin/wakatime"
      )
    )
    ((spacemacs/system-is-linux)
-    (setq-default dotspacemacs-default-font '("Monospace"
-                                              :size 13
-                                              :weight normal
-                                              :width normal
-                                              :powerline-scale 1.1)
+    (setq-default
+     dotspacemacs-default-font '("Monospace"
+                                  :size 13
+                                  :weight normal
+                                  :width normal
+                                  :powerline-scale 1.1)
     wakatime-python-bin "/Users/gtmshrm/anaconda/bin/python"
     wakatime-cli-path "/Users/gtmshrm/anaconda/bin/wakatime"
     )
