@@ -409,35 +409,40 @@ you should place your code here."
   (use-package helm-flycheck
     :defer t
     :init
-    (spacemacs/set-leader-keys "ee" 'helm-flycheck))
+    (progn
+      (spacemacs/set-leader-keys "ee" 'helm-flycheck)))
 
   (use-package helm-flycheck
     :defer t
     :init
-    ;; use non-spaced pairs when surrounding with an opening brace
-    (evil-add-to-alist
-     'evil-surround-pairs-alist
-     ?\( '("(" . ")")
-     ?\[ '("[" . "]")
-     ?\{ '("{" . "}")
-     ?\) '("( " . " )")
-     ?\] '("[ " . " ]")
-     ?\} '("{ " . " }"))
+    (progn
+      ;; use non-spaced pairs when surrounding with an opening brace
+      (evil-add-to-alist
+       'evil-surround-pairs-alist
+       ?\( '("(" . ")")
+       ?\[ '("[" . "]")
+       ?\{ '("{" . "}")
+       ?\) '("( " . " )")
+       ?\] '("[ " . " ]")
+       ?\} '("{ " . " }")))
     :config
-    (add-hook 'c++-mode-hook (lambda ()
-                               (push '(?< . ("< " . " >")) evil-surround-pairs-alist)))
-    (global-evil-surround-mode 1))
+    (progn
+      (add-hook 'c++-mode-hook (lambda ()
+                                 (push '(?< . ("< " . " >")) evil-surround-pairs-alist))))
+      (global-evil-surround-mode 1))
 
   (use-package key-chord
     :defer t
     :init
-    (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
-    (key-chord-define evil-insert-state-map  "kj" 'evil-normal-state)
-    (key-chord-define evil-replace-state-map  "jk" 'evil-normal-state)
-    (key-chord-define evil-replace-state-map  "kj" 'evil-normal-state)
+    (progn
+      (key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+      (key-chord-define evil-insert-state-map  "kj" 'evil-normal-state)
+      (key-chord-define evil-replace-state-map  "jk" 'evil-normal-state)
+      (key-chord-define evil-replace-state-map  "kj" 'evil-normal-state))
     :config
-    (setq key-chord-two-keys-delay 0.5)
-    (key-chord-mode 1))
+    (progn
+      (setq key-chord-two-keys-delay 0.5)
+      (key-chord-mode 1)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
