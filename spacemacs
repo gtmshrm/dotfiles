@@ -443,6 +443,9 @@ you should place your code here."
     (progn
       (setq key-chord-two-keys-delay 0.5)
       (key-chord-mode 1)))
+
+  ;; Settings
+  (setq-default python-indent-offset 2)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
