@@ -428,8 +428,8 @@ you should place your code here."
     :config
     (progn
       (add-hook 'c++-mode-hook (lambda ()
-                                 (push '(?< . ("< " . " >")) evil-surround-pairs-alist))))
-      (global-evil-surround-mode 1))
+                                 (push '(?< . ("< " . " >")) evil-surround-pairs-alist)))
+      (global-evil-surround-mode 1)))
 
   (use-package key-chord
     :defer t
