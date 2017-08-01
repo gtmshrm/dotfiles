@@ -55,11 +55,22 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = " "
+let g:mapleader = " "
 
-" Fast saving
-nmap <leader>w :w!<cr>
+" Save and Quit
+nmap <leader>fs :w<cr>
+nmap <leader>qq :q!<cr>
+
+" Split
+nmap <leader>wv :vsplit<cr>
+nmap <leader>ws :split<cr>
+
+" Split Navigation
+nmap <leader>wj <C-W><C-J><cr>
+nmap <leader>wk <C-W><C-K><cr>
+nmap <leader>wl <C-W><C-L><cr>
+nmap <leader>wh <C-W><C-H><cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
