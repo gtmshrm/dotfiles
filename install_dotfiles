@@ -1,0 +1,41 @@
+#!/usr/bin/env zsh
+dir=$PWD
+
+echo "------ Installing: Basic vim-tmux setup ------\n"
+
+echo "Installing vim"
+sudo apt-get install vim
+
+echo "Obtaining vim config"
+git clone --depth=1 https://github.com/gtmshrm/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+echo "Linking personal vim config\n"
+rm ~/.vim_runtime/vimrcs/basic.vim
+ln -s $dir/configs/vim/basic.vim ~/.vim_runtime/vimrcs/basic.vim
+
+echo "Installing tmux"
+sudo apt-get install tmux
+
+olddir=~/old_dotfiles
+files="bashrc zshrc inputrc tmux.conf"
+
+echo "Creating $olddir for backup of existing dotfiles\n"
+mkdir -p $olddir
+
+#echo "Moving any existing dotfiles from ~ to $olddir\n"
+for file in $files; do
+	echo "Moving $file to $olddir\n"
+	mv ~/.$file $olddir
+done
+
+for file in $files; do
+	echo "Creating symlinks to $file in home directory\n"
+	ln -s $dir/configs/$file ~/.$file
+done
+
+echo "------ Done: Basic vim-tmux setup ------\n"
+
+####### remove this link
+echo "Copying fonts"
+cp -R $dir/fonts/* ~/.fonts
