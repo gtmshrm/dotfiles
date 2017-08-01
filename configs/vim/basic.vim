@@ -232,7 +232,8 @@ map <leader>wh <C-W><C-H><cr>
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Useful mappings for managing tabs
-map <leader>wo :tabnew<cr>
+map <leader>wF :tabnew<cr>
+map <leader>wo :tabnext<cr>
 
 
 " Specify the behavior when switching between buffers
