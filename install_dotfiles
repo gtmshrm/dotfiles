@@ -38,4 +38,4 @@ echo "------ Done: Basic vim-tmux setup ------\n"
 
 ####### remove this link
 echo "Copying fonts"
-cp -R $dir/fonts/* ~/.fonts
+cp $dir/fonts/* ~/.fonts
