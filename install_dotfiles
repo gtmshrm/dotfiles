@@ -1,41 +1,43 @@
 #!/usr/bin/env zsh
 dir=$PWD
 
-echo "------ Installing: Basic vim-tmux setup ------\n"
+echo "\n\n~~~~~~ INSTALLING: BASIC VIM~TMUX SETUP ~~~~~~\n\n"
 
-echo "Installing vim"
-sudo apt-get install vim
+echo "Installing vim...\n"
+sudo apt-get install vim > /dev/null
 
-echo "Obtaining vim config"
+echo "\nObtaining vim config from a fork...\n"
 git clone --depth=1 https://github.com/gtmshrm/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-echo "Linking personal vim config\n"
+echo "\nLinking personal vim config...\n"
 rm ~/.vim_runtime/vimrcs/basic.vim
-ln -s $dir/configs/vim/basic.vim ~/.vim_runtime/vimrcs/basic.vim
+ln -s $dir/configs/vimrc ~/.vim_runtime/vimrcs/basic.vim
 
-echo "Installing tmux"
-sudo apt-get install tmux
+echo "Installing tmux...\n"
+sudo apt-get install tmux > /dev/null
 
 olddir=~/old_dotfiles
-files="bashrc zshrc inputrc tmux.conf"
 
-echo "Creating $olddir for backup of existing dotfiles\n"
+echo "Creating backup: $dotfiles...\n"
+# echo "Creating $olddir for backup of existing dotfiles\n"
 mkdir -p $olddir
 
-#echo "Moving any existing dotfiles from ~ to $olddir\n"
+# echo "Moving any existing dotfiles from ~ to $olddir\n"
 for file in $files; do
 	echo "Moving $file to $olddir\n"
-	mv ~/.$file $olddir
+	sudo mv ~/.$file $olddir
 done
 
+echo "Creating symlinks...\n"
+files="bashrc zshrc inputrc tmux.conf"
 for file in $files; do
-	echo "Creating symlinks to $file in home directory\n"
+	# echo "Creating symlinks to $file in home directory"
 	ln -s $dir/configs/$file ~/.$file
 done
 
-echo "------ Done: Basic vim-tmux setup ------\n"
+echo "------ DONE: BASIC VIM-TMUX SETUP ------\n\n"
 
 ####### remove this link
 echo "Copying fonts"
-cp $dir/fonts/* ~/.fonts
+sudo cp $dir/fonts/* ~/.fonts
