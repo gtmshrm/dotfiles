@@ -1,0 +1,56 @@
+#!/usr/bin/env zsh
+dir=$PWD
+
+
+echo "\n\n>>>>>> INSTALLING: BASIC VIM+TMUX+ZSH SETUP <<<<<<\n\n"
+
+if read -q '?Do you want oh-my-zsh setup (y/n)?: '; then
+    echo "--Installing oh-my-zsh...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+echo "--Installing vim...\n"
+sudo apt-get install vim > /dev/null
+
+echo "--Obtaining vim config from a fork...\n"
+git clone --depth=1 https://github.com/gtmshrm/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+echo "\n--Installing tmux...\n"
+sudo apt-get install tmux > /dev/null
+
+olddir=~/old_dotfiles
+files=(bashrc zshrc inputrc tmux.conf gitconfig wakatime.cfg)
+
+echo "--Creating backup dir: $olddir...\n"
+mkdir -p $olddir
+
+for file in $files; do
+	mv ~/.$file $olddir
+done
+
+echo "\n--Creating symlinks to dotfiles...\n"
+for file in $files; do
+	ln -s $dir/configs/$file ~/.$file
+done
+
+if read -q '?Do you want wakatime (y/n)?: '; then
+    echo "--Installing wakatime in default python env...\n"
+    pip install wakatime
+fi
+
+
+echo "\n\n>>>>>> SYM-LINKING: ~/bin <<<<<<\n\n"
+ln -s $dir/bin ~/bin
+
+
+if read -q '?Do you want the emacs setup (y/n)?: '; then
+    echo "\n\n>>>>>> LINKING: EMACS CONFIG <<<<<<\n\n"
+    mv ~/.emacs.d ~/.emacs.d.bak
+    rm -rf ~/.spacemacs.d
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    ln -s $dir/configs/emacs.d ~/.spacemacs.d
+fi
+
+
+echo "\n\n>>>>>> DONE: DOTFILES SUCCESSFULLY INSTALLED <<<<<<\n\n"

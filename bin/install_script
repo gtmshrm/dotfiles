@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+rm -rf ~/Documents/fuckiofff
+echo "done"

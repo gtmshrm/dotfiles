@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ipython_image
+# key: pimg
+# group: general
+# --
+#+BEGIN_SRC ipython :session :file ${1:image_save_path} : exports both
+$0
+#+END_SRC

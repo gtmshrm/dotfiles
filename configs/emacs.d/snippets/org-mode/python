@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: python
+# key: p
+# group: general
+# --
+#+BEGIN_SRC python :session
+$0
+#+END_SRC

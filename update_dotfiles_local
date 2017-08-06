@@ -1,3 +1,0 @@
-#!/bin/bash
-mv ~/.spacemacs ~/.spacemacs.bak
-cp ~/dotfiles/spacemacs ~/.spacemacs

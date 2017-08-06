@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sp
+# key: sp
+# group : general
+# --
+import scipy.misc
+$0
