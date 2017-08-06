@@ -490,9 +490,9 @@ you should place your code here."
   ;; Cursor
   (setq evil-mode-line-format nil
         evil-emacs-state-cursor '("red" box)
-        evil-normal-state-cursor '("purple" box)
+        evil-normal-state-cursor '("white" box)
         evil-visual-state-cursor '("orange" box)
-        evil-insert-state-cursor '("purple" box)
+        evil-insert-state-cursor '("white" box)
         evil-replace-state-cursor '("red" box)
         evil-operator-state-cursor '("red" hollow))
 

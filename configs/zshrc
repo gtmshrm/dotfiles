@@ -35,6 +35,8 @@ alias gs='git status'
 
 # Added by Miniconda3 4.3.21 installer
 export PATH="/home/gtmshrm/miniconda3/bin:$PATH"
+
+# ROS
 source /opt/ros/indigo/setup.zsh
 
 # Add path for ~/bin dir
