@@ -20,7 +20,7 @@
 **These dotfiles** contains my personal Emacs (Spacemacs), Vim, Zsh and Tmux environments tuned for AI stuff.
 
 <div align="center">
-  <img alt="screenshot" src="https://raw.githubusercontent.com/gtmshrm/dotfiles/master/screenshot.png" width="100%" />
+  <img alt="screenshot" src="https://raw.githubusercontent.com/gtmshrm/dotfiles/master/screenshot.png" width="85%" />
 </div>
 
 <br />
