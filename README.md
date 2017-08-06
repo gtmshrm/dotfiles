@@ -17,10 +17,10 @@
 
 <br />
 
-**This dotfiles** contains highly customized Emacs (Spacemacs), Vim, Zsh and Tmux environments tuned for AI stuff.
+**These dotfiles** contains my personal Emacs (Spacemacs), Vim, Zsh and Tmux environments tuned for AI stuff.
 
 <div align="center">
-  <img alt="screenshot" src="https://raw.githubusercontent.com/gtmshrm/i/master/dotfiles/screenshot.png" width="85%" />
+  <img alt="screenshot" src="https://raw.githubusercontent.com/gtmshrm/dotfiles/master/screenshot.png" width="100%" />
 </div>
 
 <br />
