@@ -48,7 +48,7 @@ ln -s $dir/bin ~/bin
 if read -q '?Do you want the emacs setup (y/n)?: '; then
     echo "\n\n>>>>>> LINKING: EMACS CONFIG <<<<<<\n\n"
     mv ~/.emacs.d ~/.emacs.d.bak
-    rm -rf ~/.spacemacs.d
+    rm -rf ~/.spacemacs*
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
     ln -s $dir/configs/emacs.d ~/.spacemacs.d
 fi
