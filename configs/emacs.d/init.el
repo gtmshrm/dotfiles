@@ -488,13 +488,13 @@ you should place your code here."
   (setq powerline-default-separator 'arrow)
 
   ;; Cursor
-  (setq evil-mode-line-format nil
-        evil-emacs-state-cursor '("red" box)
-        evil-normal-state-cursor '("white" box)
-        evil-visual-state-cursor '("orange" box)
-        evil-insert-state-cursor '("white" box)
-        evil-replace-state-cursor '("red" box)
-        evil-operator-state-cursor '("red" hollow))
+  ;; (setq evil-mode-line-format nil
+  ;;       evil-emacs-state-cursor '("red" box)
+  ;;       evil-normal-state-cursor '("white" box)
+  ;;       evil-visual-state-cursor '("orange" box)
+  ;;       evil-insert-state-cursor '("white" box)
+  ;;       evil-replace-state-cursor '("red" box)
+  ;;       evil-operator-state-cursor '("red" hollow))
 
 
   ;; ------------- Use Packages ---------------

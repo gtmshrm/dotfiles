@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sys
+# key: sys
+# group : general
+# --
+import sys
+$0
