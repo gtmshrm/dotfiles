@@ -2,6 +2,7 @@
 
 dir=$PWD
 
+# ------------ Vim-Tmux-Zsh Setup ------------
 
 echo "\n\n>>>>>> INSTALLING: BASIC VIM+TMUX+ZSH SETUP <<<<<<\n\n"
 
@@ -35,22 +36,32 @@ for file in $files; do
 	ln -s $dir/configs/$file ~/.$file
 done
 
-if read -q '?Do you want wakatime (y/n)?: '; then
-    echo "--Installing wakatime in default python env...\n"
-    pip install wakatime
-fi
 
+# ------------ Symlink ~/bin ------------
 
 echo "\n\n>>>>>> SYM-LINKING: ~/bin <<<<<<\n\n"
 ln -s $dir/bin ~/bin
 
+# ------------  Emacs Setup (Pre-req: Emacs) ------------
 
 if read -q '?Do you want the emacs setup (y/n)?: '; then
     echo "\n\n>>>>>> LINKING: EMACS CONFIG <<<<<<\n\n"
+    # Backup emacs setup
     mv ~/.emacs.d ~/.emacs.d.bak
+    # Remove existing spacemacs config, if any
     rm -rf ~/.spacemacs*
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    # Clone spacemacs repo and switch to dev branch
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d --branch develop
+    # Create symlink for config
     ln -s $dir/configs/emacs.d ~/.spacemacs.d
+fi
+
+
+# ------------ Wakatime ------------
+
+if read -q '?Do you want wakatime (y/n)?: '; then
+    echo "--Installing wakatime in default python env...\n"
+    pip install wakatime
 fi
 
 
