@@ -346,10 +346,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; https://github.com/syl20bnr/spacemacs/issues/3920
   (setq exec-path-from-shell-arguments '("-l"))
 
-  ;; Open URLs with qutebrowser (have stopped using qutebrowser)
-  ;; (setq browse-url-browser-function 'browse-url-generic
-  ;;       browse-url-generic-program "qutebrowser")
-
   ;; Good to have this
   (setq-default
    evil-shift-round nil
@@ -407,18 +403,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
   ;; Font
-    dotspacemacs-default-font '("Source Code Pro"
-                                :size 12
-                                :weight normal
-                                :width normal
-                                :powerline-scale 1.1)
-    dotspacemacs-default-font '("Input Mono"
-                                :size 13
-                                :weight normal
-                                :width condensed
-                                :powerline-scale 1.1)
-    wakatime-python-bin "~/miniconda3/envs/py35/bin/python"
-    wakatime-cli-path "~/miniconda3/envs/py35/bin/wakatime"
+  dotspacemacs-default-font '("Source Code Pro"
+                              :size 12
+                              :weight normal
+                              :width normal
+                              :powerline-scale 1.1)
+  dotspacemacs-default-font '("Input Mono"
+                              :size 13
+                              :weight normal
+                              :width condensed
+                              :powerline-scale 1.1)
+  wakatime-python-bin "~/miniconda3/envs/py35/bin/python"
+  wakatime-cli-path "~/miniconda3/envs/py35/bin/wakatime"
 )
 
 (defun dotspacemacs/user-config ()
