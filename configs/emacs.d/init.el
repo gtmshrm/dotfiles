@@ -346,8 +346,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; https://github.com/syl20bnr/spacemacs/issues/3920
   (setq exec-path-from-shell-arguments '("-l"))
 
-  ;; Good to have this
   (setq-default
+
+   ;; Good to have this
    evil-shift-round nil
 
    ;; Whitespace mode (activate using SPC-t-w to check for tabs)
@@ -366,7 +367,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
    ;; Flycheck
    flycheck-check-syntax-automatically '(save mode-enabled)
-
 
    ;; Avy
    ;; avy-all-windows 'all-frames
@@ -416,6 +416,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   wakatime-python-bin "~/miniconda3/envs/py35/bin/python"
   wakatime-cli-path "~/miniconda3/envs/py35/bin/wakatime"
 )
+
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
