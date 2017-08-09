@@ -91,8 +91,6 @@ values."
      evil-mc
      evil-surround
      helm-flycheck
-     ;;org-babel
-     ;;ob-python
      ob-ipython
      ox-pandoc
      key-chord
@@ -264,7 +262,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native nil
@@ -408,41 +406,19 @@ before packages are loaded. If you are unsure, you should try in setting them in
      ;; "Glass" "GEIRSKLA" "AlsTEinnhr" "Lenunnono011" "MaRzLa" "Bohnert"))
   )
 
-  ;; Setting Font type according to OS
-  (cond
-   ((spacemacs/system-is-mac)
-    (setq-default
-     ;; dotspacemacs-default-font '("Source Code Pro"
-     ;;                              :size 13
-     ;;                              :weight normal
-     ;;                              :width normal
-     ;;                              :powerline-scale 1.1)
-     dotspacemacs-default-font '("Input Mono"
-                                 :size 13
-                                 :weight normal
-                                 :width condensed
-                                 :powerline-scale 1.1)
-     wakatime-python-bin "/Users/gautamsharma/anaconda/bin/python"
-     wakatime-cli-path "/Users/gautamsharma/anaconda/bin/wakatime"
-     )
-   )
-   ((spacemacs/system-is-linux)
-    (setq-default
-     ;; dotspacemacs-default-font '("Source Code Pro"
-     ;;                             :size 12
-     ;;                             :weight normal
-     ;;                             :width normal
-     ;;                             :powerline-scale 1.1)
-     dotspacemacs-default-font '("Input Mono"
-                                  :size 13
-                                  :weight normal
-                                  :width condensed
-                                  :powerline-scale 1.1)
-    wakatime-python-bin "/home/gtmshrm/miniconda3/envs/py35/bin/python"
-    wakatime-cli-path "/home/gtmshrm/miniconda3/envs/py35/bin/wakatime"
-    )
-   )
-  )
+  ;; Font
+    dotspacemacs-default-font '("Source Code Pro"
+                                :size 12
+                                :weight normal
+                                :width normal
+                                :powerline-scale 1.1)
+    dotspacemacs-default-font '("Input Mono"
+                                :size 13
+                                :weight normal
+                                :width condensed
+                                :powerline-scale 1.1)
+    wakatime-python-bin "~/miniconda3/envs/py35/bin/python"
+    wakatime-cli-path "~/miniconda3/envs/py35/bin/wakatime"
 )
 
 (defun dotspacemacs/user-config ()
@@ -471,9 +447,9 @@ you should place your code here."
     (define-key company-active-map (kbd "C-w") nil))
 
   ;; Python shell interpreter
-  (setq python-shell-interpreter "/home/gtmshrm/miniconda3/envs/py35/bin/python")
+  (setq python-shell-interpreter "~/miniconda3/envs/py35/bin/python")
   ;; Set default python path
-  (setenv "PYTHONPATH" "/home/gtmshrm/miniconda3/envs/py35/lib/python3.5/site-packages")
+  (setenv "PYTHONPATH" "~/miniconda3/envs/py35/lib/python3.5/site-packages")
   ;; Enable org-mode evaluation of code
   (setq python-shell-prompt-detect-failure-warning nil)
   (org-babel-do-load-languages
