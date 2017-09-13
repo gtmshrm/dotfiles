@@ -6,31 +6,30 @@ dir=$PWD
 
 echo "\n\n>>>>>> INSTALLING: BASIC VIM+TMUX+ZSH SETUP <<<<<<\n\n"
 
-# uncomment this-=================================================
-# if read -q '?Do you want oh-my-zsh setup (y/n)?: '; then
-#     echo "--Installing oh-my-zsh...\n"
-#     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# fi
+if read -q '?Do you want oh-my-zsh setup (y/n)?: '; then
+    echo "--Installing oh-my-zsh...\n"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
-# echo "--Installing vim...\n"
-# sudo apt-get install vim > /dev/null
-
-olddir=~/old_dotfiles
-files=(bashrc zshrc inputrc tmux.conf gitconfig wakatime.cfg)
-
-echo "--Creating backup dir: $olddir...\n"
-mkdir -p $olddir
-
-for file in $files; do
-	  mv ~/.$file $olddir
-done
+echo "--Installing vim...\n"
+sudo apt-get install vim
 
 echo "--Obtaining vim config from a fork...\n"
 git clone --depth=1 https://github.com/gtmshrm/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-# echo "\n--Installing tmux...\n"
-# sudo apt-get install tmux > /dev/null
+echo "\n--Installing tmux...\n"
+sudo apt-get install tmux
+
+olddir=~/old_dotfiles
+files=(bashrc zshrc inputrc tmux.conf gitconfig)
+
+echo "--Creating backup dir: $olddir...\n"
+mkdir -p $olddir
+
+for file in $files; do
+	mv ~/.$file $olddir
+done
 
 echo "\n--Creating symlinks to dotfiles...\n"
 for file in $files; do
@@ -47,25 +46,15 @@ ln -s $dir/bin ~/bin
 
 if read -q '?Do you want the emacs setup (y/n)?: '; then
     echo "\n\n>>>>>> LINKING: EMACS CONFIG <<<<<<\n\n"
-    # uncomment this-================================================
     # Backup emacs setup
-    # mv ~/.emacs.d ~/.emacs.d.bak
+    mv ~/.emacs.d ~/.emacs.d.bak
     # Remove existing spacemacs config, if any
     rm -rf ~/.spacemacs*
     # Clone spacemacs repo and switch to dev branch
-    # git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d --branch develop
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d --branch develop
     # Create symlink for config
     ln -s $dir/configs/emacs.d ~/.spacemacs.d
 fi
-
-
-# ------------ Wakatime ------------
-
-# delete this and add to dependencies -================================================
-# if read -q '?Do you want wakatime (y/n)?: '; then
-#     echo "--Installing wakatime in default python env...\n"
-#     pip install wakatime
-# fi
 
 
 echo "\n\n>>>>>> DONE: DOTFILES SUCCESSFULLY INSTALLED <<<<<<\n\n"

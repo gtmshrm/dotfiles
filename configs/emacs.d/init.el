@@ -39,7 +39,7 @@ values."
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-tab-key-behavior 'cycle
-                      :disable-for org erg) ;; TODO Check this statement
+                      :disable-for org erg)
      better-defaults
      (c-c++ :variables c-c++-enable-clang-support t)
      ;; docker
@@ -52,12 +52,13 @@ values."
      html
      imenu-list
      ipython-notebook
+     latex
      markdown
      (org :variables
           org-enable-github-support t
           org-bullets-bullet-list '("■" "◆" "▲" "▶")
           org-startup-with-inline-images t)
-     pandoc
+     ;; pandoc
      pdf-tools
      (python :variables
              python-enable-yapf-format-on-save t
@@ -67,7 +68,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom
-            shell-default-shell 'eshell
+            shell-default-shell 'ansi-term
             ;; shell-default-shell 'ansi-term
             shell-enable-smart-eshell t
             shell-protect-eshell-prompt nil)
@@ -78,7 +79,6 @@ values."
      themes-megapack
      version-control
      vimscript
-     (wakatime :variables wakatime-api-key "9aa153da-a249-4768-89a1-385de5787abf")
      ;;yaml
      )
 
@@ -91,8 +91,10 @@ values."
      evil-mc
      evil-surround
      helm-flycheck
+     ;;org-babel
+     ;;ob-python
      ob-ipython
-     ox-pandoc
+     ;;ox-pandoc
      key-chord
      )
 
@@ -169,16 +171,21 @@ values."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          sanityinc-tomorrow-blue
-                         flatland
-                         ujelly
                          spacemacs-dark
                          omtose-darker
+                         flatland
+                         ujelly
                          sunny-day
                          spacemacs-light
                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
-
+   ;; Set default font
+   dotspacemacs-default-font '("Input Mono"
+                               :size 13
+                               :weight normal
+                               :width condensed
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -346,9 +353,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; https://github.com/syl20bnr/spacemacs/issues/3920
   (setq exec-path-from-shell-arguments '("-l"))
 
-  (setq-default
+  ;; Open URLs with qutebrowser (have stopped using qutebrowser)
+  ;; (setq browse-url-browser-function 'browse-url-generic
+  ;;       browse-url-generic-program "qutebrowser")
 
-   ;; Good to have this
+  ;; Good to have this
+  (setq-default
    evil-shift-round nil
 
    ;; Whitespace mode (activate using SPC-t-w to check for tabs)
@@ -367,6 +377,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
    ;; Flycheck
    flycheck-check-syntax-automatically '(save mode-enabled)
+
 
    ;; Avy
    ;; avy-all-windows 'all-frames
@@ -401,22 +412,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; '("Orestotlra" "Anwellyin" "GWILIESEN" "Howdeshell" "Otsuka" "MALIK" "xXgulbragurXx13" "Clytaemnus"
      ;; "Glass" "GEIRSKLA" "AlsTEinnhr" "Lenunnono011" "MaRzLa" "Bohnert"))
   )
-
-  ;; Font
-  dotspacemacs-default-font '("Source Code Pro"
-                              :size 12
-                              :weight normal
-                              :width normal
-                              :powerline-scale 1.1)
-  dotspacemacs-default-font '("Input Mono"
-                              :size 13
-                              :weight normal
-                              :width condensed
-                              :powerline-scale 1.1)
-  wakatime-python-bin "~/miniconda3/envs/py35/bin/python"
-  wakatime-cli-path "~/miniconda3/envs/py35/bin/wakatime"
+  ;; Python shell interpreter
+  (setq python-shell-interpreter "/Users/gautamsharma/miniconda3/envs/py35/bin/python")
+  ;; Set default python path
+  (setenv "PYTHONPATH" "/Users/gautamsharma/miniconda3/envs/py35/lib/python3.5/site-packages")
 )
-
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -425,6 +425,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; Always use emacs editing style in terminal
+  (evil-set-initial-state 'term-mode 'emacs)
 
   ;; Use relative line number
   (setq-default dotspacemacs-line-numbers 'relative)
@@ -443,10 +446,6 @@ you should place your code here."
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-w") nil))
 
-  ;; Python shell interpreter
-  (setq python-shell-interpreter "~/miniconda3/envs/py35/bin/python")
-  ;; Set default python path
-  (setenv "PYTHONPATH" "~/miniconda3/envs/py35/lib/python3.5/site-packages")
   ;; Enable org-mode evaluation of code
   (setq python-shell-prompt-detect-failure-warning nil)
   (org-babel-do-load-languages
@@ -466,13 +465,15 @@ you should place your code here."
   (setq powerline-default-separator 'arrow)
 
   ;; Cursor
-  ;; (setq evil-mode-line-format nil
+  ;;(setq evil-mode-line-format nil
   ;;       evil-emacs-state-cursor '("red" box)
+        ;;evil-hybrid-state-cursor '("blue" box)
   ;;       evil-normal-state-cursor '("white" box)
   ;;       evil-visual-state-cursor '("orange" box)
   ;;       evil-insert-state-cursor '("white" box)
   ;;       evil-replace-state-cursor '("red" box)
-  ;;       evil-operator-state-cursor '("red" hollow))
+  ;;       evil-operator-state-cursor '("red" hollow)
+  ;;)
 
 
   ;; ------------- Use Packages ---------------
@@ -536,6 +537,11 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol t)
  '(package-selected-packages
    (quote
-    (white-sand-theme symon string-inflection rebecca-theme realgud test-simple loc-changes load-relative password-generator helm-purpose evil-lion browse-at-remote org-brain ob-ipython ranger pandoc-mode ox-pandoc markdown-toc markdown-mode evil-org request-deferred editorconfig window-purpose imenu-list magit magit-popup with-editor typit mmt sudoku pacmacs dash-functional 2048-game web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode impatient-mode helm-css-scss emmet-mode company-web pdf-tools tablist magithub ghub+ apiwrap ghub github-browse-file vimrc-mode dactyl-mode auctex ox-gfm ein skewer-mode deferred websocket js2-mode simple-httpd key-chord python-mode sanityinc-blue-theme sanatyinc-blue-theme zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme xterm-color unfill shell-pop org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term htmlize helm-company helm-c-yasnippet gnuplot fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
- '(wakatime-python-bin nil t))
+    (company-auctex white-sand-theme symon string-inflection rebecca-theme realgud test-simple loc-changes load-relative password-generator helm-purpose evil-lion browse-at-remote org-brain ob-ipython ranger pandoc-mode ox-pandoc markdown-toc markdown-mode evil-org request-deferred editorconfig window-purpose imenu-list magit magit-popup with-editor typit mmt sudoku pacmacs dash-functional 2048-game web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode impatient-mode helm-css-scss emmet-mode company-web pdf-tools tablist magithub ghub+ apiwrap ghub github-browse-file vimrc-mode dactyl-mode auctex ox-gfm ein skewer-mode deferred websocket js2-mode simple-httpd key-chord python-mode sanityinc-blue-theme sanatyinc-blue-theme zonokai-theme zenburn-theme zen-and-art-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pastels-on-dark-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme firebelly-theme farmhouse-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme xterm-color unfill shell-pop org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term htmlize helm-company helm-c-yasnippet gnuplot fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help company-statistics company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil)))))
 )
