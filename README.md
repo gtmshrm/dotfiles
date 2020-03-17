@@ -17,7 +17,7 @@
 
 <br />
 
-**These dotfiles** contain my personal Emacs (Spacemacs), Vim, Zsh and Tmux environments tuned for playing with AI.
+**These dotfiles** contain my personal Emacs, Vim, Zsh and Tmux environments, tuned for playing with ML and Robotics.
 
 <div align="center">
   <img alt="screenshot" src="https://raw.githubusercontent.com/gtmshrm/dotfiles/master/screenshot.png" width="85%" />
