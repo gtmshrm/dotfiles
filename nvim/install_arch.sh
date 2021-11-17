@@ -1,15 +1,17 @@
 #!/bin/bash
 echo "Installing dependencies..."
-# python
+# Python provider
 sudo pip install pynvim
-# vim-plug
+# Vim-plug
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-# fzf
+# Fzf
 sudo pacman -S fzf
-# coc.nvim
+# Coc.nvim
 sudo pacman -S npm ccls
 curl -sL install-node.vercel.app/lts | bash
+# Node.js provider
+sudo npm install -g neovim
 
 echo "Installing new vim config..."
 mkdir -p ~/.config/nvim/plugin
