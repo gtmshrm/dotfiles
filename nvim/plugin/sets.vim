@@ -22,7 +22,7 @@ set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 " Linting
-"set colorcolumn=80
+set colorcolumn=80
 "set signcolumn=yes
 " Having longer updatetime (default is 4000ms = 4s) leads to noticeable
 " delays and poor user experience.

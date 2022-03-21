@@ -12,6 +12,7 @@ set wildignore+=**/android/*
 set wildignore+=**/ios/*
 set wildignore+=**/.git/*
 
+filetype plugin on
 syntax on
 
 " --- Plugins
@@ -34,7 +35,6 @@ Plug 'honza/vim-snippets'
 " Formatting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'sbdchd/neoformat'
-Plug 'Yggdroot/indentLine'
 
 " Editing
 Plug 'tpope/vim-commentary'
@@ -51,6 +51,12 @@ Plug 'skywind3000/asyncrun.vim'
 
 " Theme
 Plug 'ayu-theme/ayu-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'sickill/vim-monokai'
+Plug 'fratajczak/one-monokai-vim'
+Plug 'sainnhe/everforest'
+Plug 'ajmwagar/vim-deus'
+Plug 'overcache/NeoSolarized'
 Plug 'gruvbox-community/gruvbox'
 Plug 'navarasu/onedark.nvim'
 Plug 'shaunsingh/nord.nvim'
@@ -68,12 +74,12 @@ call plug#end()
 
 " Load necessary lua modules
 :lua require('tree')
-:lua require('evil_lualine')
+":lua require('evil_lualine')
 :lua require('treesitter')
 
-" Set tab settings for different filetypes
-autocmd FileType c,cpp,java,json,yaml,html,javascript,stylus,css,xml set ai ts=2 sw=2 sts=2 et
-autocmd FileType python set ai ts=4 sw=4 sts=4 et
+" Tab settings
+autocmd FileType json,yaml,html,javascript,stylus,css,xml set ai ts=2 sw=2 sts=2 et
+autocmd FileType c,cpp,java,python set ai ts=4 sw=4 sts=4 et
 
 " Terminal splits
 command! -nargs=* Term 10split | terminal <args>

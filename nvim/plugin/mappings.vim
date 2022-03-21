@@ -5,6 +5,7 @@ let maplocalleader = ","
 cnoremap Wq wq
 inoremap jk <esc>
 nnoremap Y y$
+nnoremap 0 ^
 
 " TODO Remove if not needed
 "nnoremap tj :tabprevious<CR>
