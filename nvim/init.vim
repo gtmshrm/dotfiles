@@ -79,7 +79,8 @@ call plug#end()
 
 " Tab settings
 autocmd FileType json,yaml,html,javascript,stylus,css,xml set ai ts=2 sw=2 sts=2 et
-autocmd FileType c,cpp,java,python set ai ts=4 sw=4 sts=4 et
+autocmd FileType cpp,java,python set ai ts=4 sw=4 sts=4 et
+autocmd FileType c set ai ts=8 sw=8 sts=8 noexpandtab
 
 " Terminal splits
 command! -nargs=* Term 10split | terminal <args>
