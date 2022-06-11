@@ -1,6 +1,6 @@
 {
   "languageserver": {
-    "clangd":{
+    "coc-clangd":{
       "command":"clangd",
       "filetypes":[
         "c",

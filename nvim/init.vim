@@ -65,10 +65,10 @@ Plug 'rose-pine/neovim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Tree, Tabline and Statusline
-Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 call plug#end()
 

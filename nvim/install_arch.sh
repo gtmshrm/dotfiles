@@ -22,3 +22,7 @@ for f in `find . -regex ".*\.vim$\|.*\.lua$\|.*\.json$"`; do
     echo $f
     ln -s ~/git/dotfiles/nvim/$f ~/.config/nvim/$f
 done
+
+# TODO install 
+# 1. clangd: https://clangd.llvm.org/installation.html
+# 2. coc-clangd: https://github.com/clangd/coc-clangd
