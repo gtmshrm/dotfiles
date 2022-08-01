@@ -26,3 +26,6 @@ done
 # TODO install 
 # 1. clangd: https://clangd.llvm.org/installation.html
 # 2. coc-clangd: https://github.com/clangd/coc-clangd
+
+# TODO usage
+# Generate compilation database using compiledb (OR run scripts/gen_compile_commands.py in case of linux kernel)
